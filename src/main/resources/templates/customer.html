@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				xmlns:th="http://www.thymeleaf.org">
+				
+				
+<head>
+<meta charset="ISO-8859-1">
+<title>Stock Manage</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+<link href="css/bootstrap.css" rel="stylesheet">
+
+<script>
+const url = "http://localhost:8080/api/customer/"
+function getCustomer(){
+	var id = document.getElementById("txtID").value;
+	
+	 const options = {
+             method: "GET",
+             headers: new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}),
+             mode: 'no-cors'
+      };
+	
+	 fetch(url + id, options)
+     .then(res => res.json())
+     .then(data => {
+             document.getElementById('txtID').value = data.id;
+             document.getElementById('txtFirstName').value = data.firstName;
+             document.getElementById('txtLastName').value = data.lastName;
+             document.getElementById('txtEmail').value = data.email;
+             document.getElementById('txtUserName').value = data.userName;
+          
+     });  	 
+	 
+	 };
+	 
+	 
+     function getCustomer() {
+         var id = document.getElementById("txtID").value;
+         
+         const options = {
+                method: "GET",
+                headers: new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}),
+                mode: 'no-cors'
+         };
+
+         fetch(url + id, options)
+         .then(res => res.json())
+         .then(data => {
+             document.getElementById('txtID').value = data.id;
+             document.getElementById('txtFirstName').value = data.firstName;
+             document.getElementById('txtLastName').value = data.lastName;
+             document.getElementById('txtEmail').value = data.email;
+             document.getElementById('txtUserName').value = data.userName;
+             
+         });  
+     }
+	 
+	 
+	 
+	 
+	
+
+
+              function deletePerson() {
+                (async () => {
+                    var id= document.getElementById("txtID").value
+                    const rawResponse = await fetch(url + id, {
+                      method: 'DELETE',
+                      headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                      }
+                    });
+                    const content = await rawResponse.json();
+              })(); 
+            }
+
+
+</script>
+
+
+</head>
+
+</head>
+<body>
+
+	<div class="container">
+    ID : <input type ="text" id="txtID" /> <br/>
+    First Name : <input type ="text" id="txtFirstName" /> <br/>
+    Last Name : <input type ="text" id="txtLastName" /> <br/>
+    Email : <input type ="text" id="txtEmail" /> <br/>
+    UserName : <input type ="text" id="txtUserName" /> <br/>
+    Password : <input type ="text" id="txtPassword" /> <br/>
+	
+	<button id = "btnGetCustomer"  onclick ="getCustomer()"/>Get Customer</button>
+
+
+        <button id="btnAddPerson" onclick="updatePerson()">Update Customer</button><br/>
+        <button id="btnAddPerson" onclick="deletePerson()">Delete Customer</button><br/>
+	
+	
+			
+	</div>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>

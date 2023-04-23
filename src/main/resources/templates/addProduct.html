@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				xmlns:th="http://www.thymeleaf.org">
+				
+				
+<head>
+<meta charset="ISO-8859-1">
+<title>Stock Manage</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+<link href="css/bootstrap.css" rel="stylesheet">
+
+</head>
+
+</head>
+<body>
+
+	<div class="container">
+		<div class="col-12">
+			<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+		        <a class="navbar-brand" href="#">TechMart</a>
+		     
+		
+		        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		            <ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link font-weight-bold"
+							href="/addProduct.html">Add Stock</a></li>
+						<li class="nav-item"><a class="nav-link font-weight-bold"
+							href="/listProducts.html">List of Stocks</a></li>
+		            </ul>
+		        </div>
+		    </nav>
+		</div>	
+		<hr>
+		
+		<div class="card">
+	<div class="card-header">
+		
+		
+		<h3 class="text-center">Add a Stock</h3>
+		</div>
+		<hr>
+		<div class="row align-items-center d-flex justify-content-center">
+		<div class="col-md-6-mx-auto">
+	
+	
+	
+			
+				
+		<div class="card">
+				<div class="card-body">
+				<form  action="/addP" method="Post" enctype = "multipart/form-data">
+		
+				<div class="form-group">
+					<label for="name">Stock Name</label>
+					<input type="text" name="sname" id="name" class="form-control mb-4"
+						placeholder="Stock Name">
+					
+					<label for="type">Type</label>
+					<input type="text" name="stype" id="name" class="form-control mb-4"
+						placeholder="Stock Type">
+						
+					<label for="price">Price</label>
+					<input type="text" name="sprice" id="price" class="form-control mb-4"
+						placeholder="Stock Price">
+		
+					<label for="desc">Description</label>
+					<textarea class="form-control mb-4" id="desc" name="sdesc"
+						placeholder="Stock Description">Stock Description
+		                                 </textarea>
+		            
+		            
+		            <label>Add image</label>                     
+					<div class="custom-file mb-4">
+						<input type="file" name="file" class="custom-file-input"
+							id="customFile"> <label class="custom-file-label"
+							for="customFile">Stock Image</label>
+							
+					</div>
+					<!-- Sign in button -->
+					<button class="btn btn-info btn-block" type="submit">Add Stock</button>
+					
+					</div>
+				</form>
+				<hr>
+			</div>
+		</div>
+			
+			</div>
+			</div>
+			
+	</div>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>

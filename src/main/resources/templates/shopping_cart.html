@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Shopping Cart</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+
+
+
+
+
+	<div class="container text-center"></div>
+			<div>
+			
+				<h1>
+					Shopping Cart 
+				</h1>
+		
+		
+	</div>
+	
+	<div class="row">
+	<div class="col">
+	
+		<th:block th:each="item,status : ${cartItems}">
+		<div class = "row border rounded">
+			<div class="col">
+				<div>[[${status.count}]]</div>
+				<div>Remove icon</div>	
+			
+			</div>
+			
+			<div class="col">
+				<img th:src="@{${stock.mainImagePath}}"
+				<div>Remove icon</div>	
+			
+			</div>
+		
+		</div>
+		
+		
+		</th:block>
+	
+	
+	
+	</div>	
+		
+		
+	
+	
+	</div>	
+		
+
+		
+
+
+	
+	
+	
+	
+</body>
+</html>

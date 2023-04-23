@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				xmlns:th="http://www.thymeleaf.org">
+				
+				
+<head>
+<meta charset="ISO-8859-1">
+<title>Stock Manage</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+<link href="css/bootstrap.css" rel="stylesheet">
+
+</head>
+
+</head>
+<body>
+	<div class="container">
+		<div class="col-12">
+
+		
+		
+	<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">TechMart</a>
+     
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link font-weight-bold"
+					href="/addProduct.html">Add Stock</a></li>
+				<li class="nav-item"><a class="nav-link font-weight-bold"
+					href="/listProducts.html">List of Stocks</a></li>
+            </ul>
+        </div>
+    </nav>
+		
+		
+		
+		
+		<hr>
+		
+		
+            <h3 class="text-center">Stock Management</h3>
+			<hr>
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">First Name</th>
+						<th scope="col">Last Name</th>
+						<th scope="col">Branch</th>
+						<th scope="col">Username</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="stock : ${stock}">
+						<th scope="row"><img alt="" th:src="*{'data:image/jpeg;base64,'+{stock.mainImage}}" style="width: 100px;height: 100px;"></th>
+						<td>[[*{stock.stockName}]]  
+						<!-- Button trigger modal --> <br>
+							<button type="button" class="btn btn-success btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenter'+*{stock.id}">change
+								name</button> <!-- Modal -->
+
+							<div class="modal fade"
+								th:id="*{'exampleModalCenter'+{stock.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												stock name</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form action="/changeName" method="post">
+												<div class="form-group">
+													<label>stock id</label> <input type="hidden"
+														th:value="*{stock.id}" class="form-control" name="id">
+														
+													<label>new Stock name</label> <input type="text"
+														name="newPname" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</td>
+						<td>[[*{stock.description}]] <!-- Button trigger modal -->
+							<br>
+							<button type="button" class="btn btn-success btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterDesc'+${stock.id}">change
+								description</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterDesc'+{stock.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												stock description</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changeDescription" method="post">
+												<div class="form-group">
+													<label>stock id</label> <input type="text"
+														th:value="*{stock.id}" class="form-control" name="id">
+													<label>new stock description</label> <input type="text"
+														name="newDescription" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td>[[*{stock.price}]] <!-- Button trigger modal --> <br>
+							<button type="button" class="btn btn-success btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterPrice'+${stock.id}">change
+								price</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterPrice'+{stock.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												stock price</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changePrice" method="post">
+												<div class="form-group">
+													<label>stock id</label> <input type="text"
+														th:value="*{stock.id}" class="form-control" name="id">
+													<label>new stock price</label> <input type="text"
+														name="newPrice" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save
+												changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+											<td>[[*{stock.type}]] <!-- Button trigger modal --> <br>
+							<button type="button" class="btn btn-success btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterType'+${stock.id}">change
+								type</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterType'+{stock.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												stock type</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+							
+															<div class="modal-body">
+
+											<form action="/changeType" method="post">
+												<div class="form-group">
+													<label>stock id</label> <input type="text"
+														th:value="*{stock.id}" class="form-control" name="id">
+													<label>new stock type</label> <input type="text"
+														name="newType" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save
+												changes</button>
+										</div>
+									</div>
+								</div>
+							
+							
+							
+							
+							
+							
+							
+							
+						</td>
+						<td><a th:href="@{/deleteStock/{id}(id=${stock.id})}"
+							class="btn btn-danger mt-4">delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+		</div>
+		
+	
+	</div>
+	
+	<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>

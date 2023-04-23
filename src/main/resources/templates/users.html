@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>List Of All Users</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+<link href="css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+	<div class="col-12">
+		<div class="card-body d-flex align-items-center  justify-content-center" style="background-color: #e3f2fd;">
+		<center>
+			<form  th:action="@{/logout}" method="post" >
+				<h4>
+					Welcome to TechMart <b>[[${#request.userPrincipal.principal.FullName}]]</b>
+				</h4>
+				<br>
+	
+				
+				<input class="d-flex align-items-center  justify-content-center" type="submit" value="Sign Out" />
+			
+			
+			</form>
+		</center>
+		
+		</div>
+		
+		<hr>
+		
+	<h3 class="text-center">List of All Sales Agent</h3>
+		
+		
+		<div>
+			<table class="table table-striped table-bordered">
+			
+			<thead class="thead-dark">
+				<tr>
+					<th>User ID</th>
+					 <th>Email</th>
+					 <th>First Name</th>
+					 <th>Last Name</th>
+					 <th>Delete</th>
+				</tr>	
+			</thead>
+			
+			<tbody>
+			
+			
+				<tr th:each="admin:${listUsers}">
+				
+					<td th:text="${admin.admin_id}">User ID</td>
+					
+					
+					<td>[[*{admin.email}]]  
+						<!-- Button trigger modal --> <br>
+							<button type="button" class="btn btn-success btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenter'+*{admin.admin_id}">Change Email</button> <!-- Modal -->
+
+							<div class="modal fade"
+								th:id="*{'exampleModalCenter'+{admin.admin_id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">Change
+												Email</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form action="/changeEmail" method="post">
+												<div class="form-group">
+													<label></label> <input type="hidden"
+														th:value="*{admin.admin_id}" class="form-control" name="id">
+														
+													<label>New Email</label> <input type="text"
+														name="newEmail" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</td>
+					
+					
+					
+					
+					
+					<td>[[*{admin.firstName}]]  
+						<!-- Button trigger modal --> <br>
+							<button type="button" class="btn btn-success btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterFName'+*{admin.admin_id}">Change First Name</button> <!-- Modal -->
+
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterFName'+{admin.admin_id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">Change
+												First Name</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form action="/changeFAName" method="post">
+												<div class="form-group">
+													<label></label> <input type="hidden"
+														th:value="*{admin.admin_id}" class="form-control" name="id">
+														
+													<label>New First Name</label> <input type="text"
+														name="newFname" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</td>
+					
+					
+					
+					
+					
+							<td>[[*{admin.lastName}]]  
+						<!-- Button trigger modal --> <br>
+							<button type="button" class="btn btn-success btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterLName'+*{admin.admin_id}">Change Last Name</button> <!-- Modal -->
+
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterLName'+{admin.admin_id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">Change
+												Last Name</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form action="/changeLAName" method="post">
+												<div class="form-group">
+													<label></label> <input type="hidden"
+														th:value="*{admin.admin_id}" class="form-control" name="id">
+														
+													<label>New Last Name</label> <input type="text"
+														name="newLname" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</td>
+					
+					
+					
+					
+					<td><a th:href="@{/deleteUser/{id}(id=${admin.admin_id})}"
+							class="btn btn-danger mt-4">delete</a></td>
+					
+				</tr>
+			
+			
+			</tbody>
+			
+			
+			
+			</table>
+		</div>
+
+	
+	</div>
+	
+	</div>
+		<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
